@@ -26,10 +26,16 @@ def getSchedule() :
 	for i in range(0,len(bs),1) :
 		ldtm=bs[i]['start_time']
 		if(fdtm<ldtm and val<5) :
+			a=bs[i]['home_team'].name.replace('_'," ")
+			b=bs[i]['away_team'].name.replace('_'," ")
+			index1=a.rfind(" ")
+			index2=b.rfind(" ")
+			a=a[index1:]
+			b=b[index2:]
 			c=bs[i]['home_team_score']
 			d=bs[i]['away_team_score']
 			e=str(c)+"-"+str(d)
-			x.add_row([bs[i]['home_team'].name.replace('_'," "),bs[i]['away_team'].name.replace('_'," "),e,bs[i]['start_time'].strftime("%Y:%m:%d"),bs[i]['start_time'].strftime("%H:%M")])
+			x.add_row([a,b,e,bs[i]['start_time'].strftime("%Y:%m:%d"),bs[i]['start_time'].strftime("%H:%M")])
 			val=val+1
 	return x
 
