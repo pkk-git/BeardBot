@@ -1,10 +1,43 @@
 from prettytable import PrettyTable
-x=PrettyTable()
 import getdata as gd
-stand=gd.getData(3)
-x.field_names = ["Team", "Wins", "Losses", "Division","Conference"]
-x.add_row([stand[0]['team'][0],stand[0]['wins'],stand[0]['losses'],stand[0]['Division'][0],stand[0]['Conference'][0]])
-print(x)
-class pfs(object) :
-	def _str_(self) :
-		return f"{self.team}
+import datetime
+from datetime import timedelta
+import pytz
+from pytz import timezone
+utc=pytz.UTC
+
+def getStandings() :
+	x=PrettyTable()
+	stand=gd.getData(3)
+	stand.sort(reverse=True,key=lambda x: x['wins'])
+	x.field_names = ["Team", "W", "L", "Division"]
+	for i in range(0,len(stand),1) :
+		x.add_row([stand[i]['team'].name.replace('_'," "),stand[i]['wins'],stand[i]['losses'],stand[i]['division'].name])
+	return x
+
+def getSchedule() :
+	x=PrettyTable()
+	dtm=datetime.datetime.now()
+	dtm=dtm-timedelta(days=1)
+	fdtm=utc.localize(dtm)
+	bs=gd.getData(2)
+	x.field_names = ["Home","Away","Score","Date","Time"]
+	val=0
+	for i in range(0,len(bs),1) :
+		ldtm=bs[i]['start_time']
+		if(fdtm<ldtm and val<5) :
+			c=bs[i]['home_team_score']
+			d=bs[i]['away_team_score']
+			e=str(c)+"-"+str(d)
+			x.add_row([bs[i]['home_team'].name.replace('_'," "),bs[i]['away_team'].name.replace('_'," "),e,bs[i]['start_time'].strftime("%Y:%m:%d"),bs[i]['start_time'].strftime("%H:%M")])
+			val=val+1
+	return x
+
+def getTeams() :
+	x=PrettyTable()
+	stand=gd.getData(3)
+	stand.sort(reverse=True,key=lambda x: x['wins'])
+	x.field_names = ["Team Name"]
+	for i in range(0,len(stand),1) :
+		x.add_row([stand[i]['team'].name.replace('_'," ")])
+	return x

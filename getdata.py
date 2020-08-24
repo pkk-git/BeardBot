@@ -1,15 +1,16 @@
 from basketball_reference_web_scraper import client
 from basketball_reference_web_scraper.data import OutputType
 import json
-import discord 
 import datetime
 from datetime import timedelta
+
 finstr="/Users/pranavkrishnakumar/repos/BeardBot/Data/"
 dtm=datetime.datetime.now()
 dtm=dtm-timedelta(days=1)
 curd=dtm.strftime("%d")
 curm=dtm.strftime("%m")
 cury=dtm.year
+
 def getData(val,d=curd,m=curm,y=cury) :
 	global finstr
 	if (val==0) :
