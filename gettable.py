@@ -35,7 +35,7 @@ def getSchedule() :
 			c=bs[i]['home_team_score']
 			d=bs[i]['away_team_score']
 			e=str(c)+"-"+str(d)
-			x.add_row([a,b,e,bs[i]['start_time'].strftime("%Y:%m:%d"),bs[i]['start_time'].strftime("%H:%M")])
+			x.add_row([a,b,e,bs[i]['start_time'].strftime("%d %b"),bs[i]['start_time'].strftime("%H:%M")])
 			val=val+1
 	return x
 
@@ -47,3 +47,29 @@ def getTeams() :
 	for i in range(0,len(stand),1) :
 		x.add_row([stand[i]['team'].name.replace('_'," ")])
 	return x
+
+def getStandingsEast() :
+	x=PrettyTable()
+	stand=gd.getData(3)
+	stand.sort(reverse=True,key=lambda x: x['wins'])
+	x.field_names = ["Team", "W", "L", "Division"]
+	for i in range(0,len(stand),1) :
+		if(str(stand[i]['conference'])==("Conference.EASTERN")) :
+			x.add_row([stand[i]['team'].name.replace('_'," "),stand[i]['wins'],stand[i]['losses'],stand[i]['division'].name])
+	return x
+
+def getStandingsWest() :
+	x=PrettyTable()
+	stand=gd.getData(3)
+	stand.sort(reverse=True,key=lambda x: x['wins'])
+	x.field_names = ["Team", "W", "L", "Division"]
+	for i in range(0,len(stand),1) :
+		if(str(stand[i]['conference'])==("Conference.WESTERN") or stand[i]['conference'] is None) :
+			x.add_row([stand[i]['team'].name.replace('_'," "),stand[i]['wins'],stand[i]['losses'],stand[i]['division'].name])
+	return x
+
+
+
+
+
+

@@ -25,6 +25,16 @@ async def standings(ctx):
 	await ctx.send("```\n"+str(st)+"```")
 
 @client.command()
+async def standings_east(ctx):
+	st=gt.getStandingsEast()
+	await ctx.send("```\n"+str(st)+"```")
+
+@client.command()
+async def standings_west(ctx):
+	st=gt.getStandingsWest()
+	await ctx.send("```\n"+str(st)+"```")
+
+@client.command()
 async def teams(ctx):
 	st=gt.getTeams()
 	await ctx.send("```\n"+str(st)+"```")

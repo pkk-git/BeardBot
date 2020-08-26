@@ -3,10 +3,13 @@ from basketball_reference_web_scraper.data import OutputType
 import json
 import datetime
 from datetime import timedelta
+import pytz
+from pytz import timezone
+utc=pytz.UTC
 
 finstr="/Users/pranavkrishnakumar/repos/BeardBot/Data/"
 dtm=datetime.datetime.now()
-dtm=dtm-timedelta(days=1)
+dtm=utc.localize(dtm)
 curd=dtm.strftime("%d")
 curm=dtm.strftime("%m")
 cury=dtm.year
@@ -57,8 +60,6 @@ def getDataLocal(val,d=curd,m=curm,y=cury) :
     		output_file_path="/Users/pranavkrishnakumar/repos/BeardBot/Data/season_standings/"+fstr
 		)
 	return val
-
-
 
 
 
