@@ -20,5 +20,8 @@ bot prefix is o
 5) To get the western conference standings 
    standings_west
 
+6) To get the team box score 
+	teamboxscore
+
 
 
