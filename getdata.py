@@ -60,9 +60,3 @@ def getDataLocal(val,d=curd,m=curm,y=cury) :
     		output_file_path="/Users/pranavkrishnakumar/repos/BeardBot/Data/season_standings/"+fstr
 		)
 	return val
-
-
-
-
-
-

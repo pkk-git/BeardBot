@@ -44,4 +44,12 @@ async def schedule(ctx):
 	st=gt.getSchedule()
 	await ctx.send("```\n"+str(st)+"```")
 
+@client.command() 
+async def teamboxscore(ctx,):
+	st=gt.getTeamBoxScores()
+	if(st==0) :
+		await ctx.send(" No NBA games in the past few days ")
+	else :
+		await ctx.send("```\n"+str(st)+"```")
+
 client.run(TK)

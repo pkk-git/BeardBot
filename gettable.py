@@ -68,6 +68,20 @@ def getStandingsWest() :
 			x.add_row([stand[i]['team'].name.replace('_'," "),stand[i]['wins'],stand[i]['losses'],stand[i]['division'].name])
 	return x
 
+def getTeamBoxScores() :
+	x=PrettyTable()
+	stand=gd.getData(1)
+	if(stand==[]) :
+		return 0
+	else :
+		x.field_names = ["Team", "Outcome","FG%","3P%","AST","TREB","BLK","STL","TO"]
+		for i in range(0,len(stand),1) :
+			x.add_row([stand[i]['team'].name.replace('_'," "),stand[i]['outcome'].name,round(float(stand[i]['made_field_goals'])*100.0/float(stand[i]['attempted_field_goals'])),round(float(stand[i]['made_three_point_field_goals'])*100.0/float(stand[i]['attempted_three_point_field_goals'])),stand[i]['assists'],stand[i]['offensive_rebounds']+stand[i]['defensive_rebounds'],stand[i]['blocks'],stand[i]['steals'],stand[i]['turnovers']])
+		return x
+	
+
+
+
 
 
 
