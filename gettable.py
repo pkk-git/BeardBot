@@ -8,6 +8,7 @@ utc=pytz.UTC
 
 def getStandings() :
 	x=PrettyTable()
+	x.border = False
 	stand=gd.getData(3)
 	stand.sort(reverse=True,key=lambda x: x['wins'])
 	x.field_names = ["Team", "W", "L", "Division"]
@@ -17,6 +18,7 @@ def getStandings() :
 
 def getSchedule() :
 	x=PrettyTable()
+	x.border = False
 	dtm=datetime.datetime.now()
 	dtm=dtm-timedelta(days=1)
 	fdtm=utc.localize(dtm)
@@ -41,6 +43,7 @@ def getSchedule() :
 
 def getTeams() :
 	x=PrettyTable()
+	x.border = False
 	stand=gd.getData(3)
 	stand.sort(reverse=True,key=lambda x: x['wins'])
 	x.field_names = ["Team Name"]
@@ -50,6 +53,7 @@ def getTeams() :
 
 def getStandingsEast() :
 	x=PrettyTable()
+	x.border = False
 	stand=gd.getData(3)
 	stand.sort(reverse=True,key=lambda x: x['wins'])
 	x.field_names = ["Team", "W", "L", "Division"]
@@ -60,6 +64,7 @@ def getStandingsEast() :
 
 def getStandingsWest() :
 	x=PrettyTable()
+	x.border = False
 	stand=gd.getData(3)
 	stand.sort(reverse=True,key=lambda x: x['wins'])
 	x.field_names = ["Team", "W", "L", "Division"]
@@ -70,6 +75,7 @@ def getStandingsWest() :
 
 def getTeamBoxScores() :
 	x=PrettyTable()
+	x.border = False
 	stand=gd.getData(1)
 	if(stand==[]) :
 		return 0

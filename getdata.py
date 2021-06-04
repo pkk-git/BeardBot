@@ -5,15 +5,15 @@ import datetime
 from datetime import timedelta
 import pytz
 from pytz import timezone
-utc=pytz.UTC
-
+hawaii=timezone('US/Hawaii')
 finstr="/Users/pranavkrishnakumar/repos/BeardBot/Data/"
 dtm=datetime.datetime.now()
-dtm=utc.localize(dtm)
+dtm=hawaii.localize(dtm)
+dtm=dtm-timedelta(days=1)
 curd=dtm.strftime("%d")
 curm=dtm.strftime("%m")
 cury=dtm.year
-
+print(curd,curm,cury)
 def getData(val,d=curd,m=curm,y=cury) :
 	global finstr
 	if (val==0) :
