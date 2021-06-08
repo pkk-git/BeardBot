@@ -1,3 +1,4 @@
 discord.py==1.4.1
 python-dotenv==0.14.0
 prettytable==2.1.0
+basketball_reference_web_scraper==4.1.0
